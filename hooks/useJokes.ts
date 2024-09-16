@@ -25,7 +25,9 @@ export const useJokes = () => {
     error,
   } = useGet<PaginatedResponse<Joke>>({ term: debouncedSearch });
 
-  const jokes = paginatedResponse?.results || [];
+  // Not a big fun of nested ternaries, but api returns something on empty search
+  // and I don't want that, Wierd, I know...
+  const jokes = search.length >= 2 ? paginatedResponse?.results || [] : [];
 
   return useMemo(
     () => ({

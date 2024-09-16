@@ -1,6 +1,6 @@
 export default function Home() {
   return (
-    <div>
+    <div className="bg-slate-900 min-h-screen w-full text-primary flex-col items-center gap-12 p-4">
       <h1>Search Jokes</h1>
     </div>
   );

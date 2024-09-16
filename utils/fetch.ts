@@ -1,6 +1,6 @@
 const API_URL = "https://icanhazdadjoke.com/search";
 
-export const GET = async (search: Record<string, string>) => {
+export const GET = async <T>(search: Record<string, string>) => {
   const url = new URL(API_URL);
 
   Object.entries(search).forEach(([key, value]) => {
@@ -13,5 +13,5 @@ export const GET = async (search: Record<string, string>) => {
     },
   });
 
-  return await response.json();
+  return (await response.json()) as T;
 };

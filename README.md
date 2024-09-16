@@ -43,7 +43,7 @@ Accept: text/plain
 
 ### Hooks
 
-- `useGet(api, params)`
+- `useGet`
   - Manages loading state, error handling, and data fetching
 - `useJokes`
   - Manages jokes, selected joke, and search text state

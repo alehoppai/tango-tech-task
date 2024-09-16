@@ -24,7 +24,7 @@ export const useGet = <T>(search: Record<string, string>) => {
     };
 
     fetchData();
-  }, [search]);
+  }, [JSON.stringify(search)]);
 
   return useMemo(() => ({ isLoading, data, error }), [isLoading, data, error]);
 };

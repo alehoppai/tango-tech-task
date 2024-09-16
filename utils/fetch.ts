@@ -4,7 +4,7 @@ export const GET = async <T>(search: Record<string, string>) => {
   const url = new URL(API_URL);
 
   Object.entries(search).forEach(([key, value]) => {
-    url.searchParams.append(key, value);
+    if (value) url.searchParams.append(key, value);
   });
 
   const response = await fetch(url, {

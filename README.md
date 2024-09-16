@@ -1,36 +1,91 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# TANGO Tech Task: Dad Joke Search
+
+This project is a Next.js application that allows users to search for dad jokes using the icanhazdadjoke API.
+
+## API
+
+The application uses the following API endpoint:
+
+```
+GET https://icanhazdadjoke.com/search
+Accept: text/plain
+```
+
+## Tech Stack
+
+- Next.js
+- TypeScript
+- Vitest or Jest + @testing-library/react
+- CSS (custom styles)
+- Fetch API
+- Hero Icons (React package)
+- use-debounce
+
+## Project Structure
+
+```
+/
+├── app/
+├── components/
+├── hooks/
+├── utils/
+├── styles/
+└── out/
+```
+
+
+### Components
+
+- Input
+- Popup
+- List & ListItem
+- ComboBox (combination of the above)
+
+### Hooks
+
+- `useGet(api, params)`
+  - Manages loading state, error handling, and data fetching
+- `useJokes`
+  - Manages jokes, selected joke, and search text state
+
+### Utils
+
+- Fetch utility pre-populated with header and API URL
+
+## Styling
+
+The application uses custom CSS with a dark mode theme. Utility classes similar to Tailwind CSS are implemented for:
+
+- Color scheme (blue for outlines, hover, selected text, and borders)
+- Dark blue for background
+- Faded blue for selected background items
+- Text truncation
+- Border radius
+- Padding
+- Flex-based layout control
+
+## Development Choices
+
+To align with the evaluation criteria focusing on expertise in HTML5, Web APIs, CSS, and external API calls, the following choices were made:
+
+- Custom CSS instead of Tailwind
+- Fetch API instead of Axios
+- Custom fetch hook instead of TanStack Query
+
+## Additional Dependencies
+
+- Hero Icons (React package) for chevron and arrow path icons
+- use-debounce for input debouncing
 
 ## Getting Started
 
-First, run the development server:
+1. Clone the repository
+2. Install dependencies: `npm install`
+3. Run the development server: `npm run dev`
+4. Open [http://localhost:3000](http://localhost:3000) in your browser
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Testing
+
 ```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+npm test
+```

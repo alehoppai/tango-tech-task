@@ -12,7 +12,7 @@ export const TextInput = ({ rightSlot, errorMessage, ...props }: Props) => (
       className="py-2 px-4 w-full bg-blue-950 text-primary rounded-xl"
       {...props}
     />
-    {rightSlot && <div className="absolute top-2 right-2">{rightSlot}</div>}
+    {rightSlot && <div className="absolute top-1 right-2">{rightSlot}</div>}
     {errorMessage && <div className="text-error">{errorMessage}</div>}
   </div>
 );

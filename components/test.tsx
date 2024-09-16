@@ -1,10 +1,25 @@
 // TODO: remove in future, for now was needed to live test
 "use client";
 
-import { GET } from "@/utils/fetch";
+import { useJokes } from "@/hooks/useJokes";
+import { useEffect } from "react";
 
 export const Test = () => {
-  GET({ term: "zed" }).then((res) => console.log(res));
+  const {
+    jokes,
+    search,
+    setSearch,
+    selectedJoke,
+    // setSelectedJoke,
+    isLoading,
+    error,
+  } = useJokes();
 
-  return <h2>TEST</h2>;
+  useEffect(() => {
+    setSearch("zed");
+  }, []);
+
+  return (
+    <h2>{JSON.stringify({ jokes, search, selectedJoke, isLoading, error })}</h2>
+  );
 };

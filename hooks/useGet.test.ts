@@ -40,21 +40,19 @@ describe("useGet", () => {
     await waitFor(() => expect(result.current.isLoading).toBe(false));
   });
 
-  // FIXME: This one is flacky, it's about async nature of useGet,
-  // just don't have time to investigate
-  // test("should handle errors", async () => {
-  //   const errorMessage = "An error occurred";
-  //   vi.mocked(GET).mockRejectedValue(new Error(errorMessage));
+  test("should handle errors", async () => {
+    const errorMessage = "An error occurred";
+    vi.mocked(GET).mockRejectedValue(new Error(errorMessage));
 
-  //   const { result } = renderHook(() => useGet<any>({ q: "error" }));
+    const { result } = renderHook(() => useGet<any>({ q: "error" }));
 
-  //   expect(GET).toHaveBeenCalledWith({ q: "error" });
+    expect(GET).toHaveBeenCalledWith({ q: "error" });
 
-  //   await waitFor(() => {
-  //     console.log("test", result);
-  //     expect(result.current.data).toBe(null);
-  //     expect(result.current.error).toBe(errorMessage);
-  //     expect(result.current.isLoading).toBe(false);
-  //   });
-  // });
+    await waitFor(() => {
+      console.log("test", result);
+      expect(result.current.data).toBe(null);
+      expect(result.current.error).toBe(errorMessage);
+      expect(result.current.isLoading).toBe(false);
+    });
+  });
 });

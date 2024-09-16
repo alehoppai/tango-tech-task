@@ -1,8 +1,10 @@
 "use client";
 
-import { useJokes } from "@/hooks/useJokes";
+import { useCallback, useState } from "react";
+import { Joke, useJokes } from "@/hooks/useJokes";
 import { TextInput } from "./TextInput";
 import { List } from "./List";
+import { Popup } from "./Popup";
 
 export const ComboBox = () => {
   const {
@@ -14,24 +16,39 @@ export const ComboBox = () => {
     isLoading,
     error,
   } = useJokes();
+  const [popupOpen, setPopupOpen] = useState(false);
+
+  const onClickJoke = useCallback(
+    (joke: Joke) => {
+      setSelectedJoke(joke);
+      setPopupOpen(false);
+    },
+    [setSelectedJoke, setPopupOpen]
+  );
 
   return (
-    <div className="w-96">
+    <div className="w-96 relative">
       <TextInput
         value={search}
         onChange={(e) => setSearch(e.target.value)}
         placeholder="Search for jokes"
         rightSlot={isLoading ?? <div>Loading...</div>}
         errorMessage={error ?? ""}
+        onFocus={() => setPopupOpen(true)}
+        onKeyDown={(e) => {
+          if (e.key === "Escape") {
+            setPopupOpen(false);
+            e.currentTarget.blur();
+          }
+        }}
       />
-      <List
-        jokes={jokes}
-        selectedJoke={selectedJoke}
-        setSelectedJoke={setSelectedJoke}
-      />
-      {/* <h2>
-        {JSON.stringify({ jokes, search, selectedJoke, isLoading, error })}
-      </h2> */}
+      <Popup open={popupOpen} onClose={() => setPopupOpen(false)}>
+        <List
+          jokes={jokes}
+          selectedJoke={selectedJoke}
+          setSelectedJoke={onClickJoke}
+        />
+      </Popup>
     </div>
   );
 };

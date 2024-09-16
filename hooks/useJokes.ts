@@ -2,7 +2,7 @@ import { useMemo, useState } from "react";
 import { useDebounce } from "use-debounce";
 import { useGet } from "./useGet";
 
-type Joke = {
+export type Joke = {
   id: string;
   joke: string;
 };

@@ -21,6 +21,10 @@ export const ComboBox = () => {
 
   const onClickJoke = useCallback(
     (joke: Joke) => {
+      // Not regular combobox behaviour.
+      // with selecting joke it's string value should be populated to the search
+      // w/ api call.
+      // But accroding to page 5 of pdf, it should work like this.
       setSelectedJoke(joke);
       setPopupOpen(false);
     },
@@ -44,6 +48,7 @@ export const ComboBox = () => {
           errorMessage={error ?? ""}
           onFocus={() => setPopupOpen(true)}
           onKeyDown={(e) => {
+            // TODO: Adding keyboard nav for accessibility
             if (e.key === "Escape") {
               setPopupOpen(false);
               e.currentTarget.blur();

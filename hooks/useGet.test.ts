@@ -49,7 +49,6 @@ describe("useGet", () => {
     expect(GET).toHaveBeenCalledWith({ q: "error" });
 
     await waitFor(() => {
-      console.log("test", result);
       expect(result.current.data).toBe(null);
       expect(result.current.error).toBe(errorMessage);
       expect(result.current.isLoading).toBe(false);
